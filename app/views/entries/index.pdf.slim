@@ -2,13 +2,8 @@ h1 Time report
 
 ul
   li= "Project: #{@project.name}" if @project
-  li= "Period: #{l(@from, format: :short)} - #{l(@to, format: :short)}"
-  li= "Total: #{formatted_minutes(@total)}"
-
-table.table.table-condensed
-  tbody
-    tr.total
-
+  li= "Period: #{I18n.l(@from, format: :short)} - #{I18n.l(@to, format: :short)}"
+  li= "Total: #{formatted_minutes(@total, legend: true)}"
 
 table.table.table-condensed
   tbody
