@@ -1,0 +1,25 @@
+h1 Time report
+
+ul
+  li= "Project: #{@project.name}" if @project
+  li= "Period: #{l(@from, format: :short)} - #{l(@to, format: :short)}"
+  li= "Total: #{formatted_minutes(@total)}"
+
+table.table.table-condensed
+  tbody
+    tr.total
+
+
+table.table.table-condensed
+  tbody
+    - @entries.group_by(&:date).sort.reverse.each do |date, entries|
+
+      tr.day-summary
+        td colspan="2" = formatted_minutes(entries.sum(&:minutes))
+        td = I18n.l(date, format: :long)
+
+      - entries.each do |entry|
+        tr.entry
+          td = formatted_minutes(entry.minutes)
+          td = entry.project.name
+          td = "#{entry.description} #{entry.links}"

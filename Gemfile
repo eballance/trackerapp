@@ -13,6 +13,7 @@ gem 'slim'
 
 # functionality
 gem 'sorcery', '~> 0.8.5'
+gem 'pdfkit'
 gem 'httparty'
 gem 'letsfreckle-client', require: 'letsfreckle'
 

@@ -21,6 +21,7 @@ en:
     and: "and"
     entries: "Entries"
     total: "Total"
+    total_month: "Total in "
     track_time: "Track time"
     save: "Save"
     description: "Description"

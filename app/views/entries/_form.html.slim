@@ -16,7 +16,7 @@
         .col-sm-4.form-group
           = f.collection_select :project_id, current_user.projects, :id, :name, {}, class: "form-control"
 
-        .col-sm-4.form-group
+        .col-sm-4.form-group.clearfix
           = text_field_tag :date, @entry_form.date_in_words, class: 'datepicker'
 
         .col-sm-6

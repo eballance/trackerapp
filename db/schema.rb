@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20140528184444) do
     t.datetime "updated_at"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
-    t.string   "provider_type"
     t.text     "settings"
+    t.string   "provider_type"
     t.boolean  "admin",                        default: false
     t.string   "language",                     default: "en"
     t.integer  "current_salary"

@@ -1,33 +1,38 @@
 .box
 
-  h1 = t('entries.entries')
-
-  = render 'pagination', position: 'top'
+  = render 'filter.html.slim', position: 'top'
 
   table.table
-    thead
-      tr.summary
-        th colspan=3 = "#{t('entries.total')}: #{formatted_minutes(@total, legend: true)}"
-
     tbody
-      - @entries.group_by(&:date).sort.reverse.each do |date, entries|
-        tr.day-summary
-          td colspan="2" = formatted_minutes(entries.sum(&:minutes))
-          td = I18n.l(date, format: :long)
+      - @entries.group_by{|e| "#{e.date.year}-#{e.date.month}" }.sort.reverse.each do |year_month, month_entries|
 
-        - entries.each do |entry|
-          tr.entry
-            td = formatted_minutes(entry.minutes)
-            td = entry.project.name
-            td
-              = entry.description
-              span.actions
-                = link_to entry_path(entry), data: { confirm: t('common.are_you_sure'), method: 'delete' }, class: 'btn btn-default btn-sm' do
-                  .glyphicon.glyphicon-trash
+        tr.month-summary
+          td colspan="3"
+            = "#{t('entries.total_month')} #{Date.parse("#{year_month}-1").strftime("%B")}: "
+            strong = formatted_minutes(month_entries.sum(&:minutes), legend: true)
+
+        - month_entries.group_by(&:date).sort.reverse.each do |date, entries|
+
+          tr.day-summary
+            td colspan="2" = formatted_minutes(entries.sum(&:minutes))
+            td = I18n.l(date, format: :long)
+
+          - entries.each do |entry|
+            tr.entry
+              td = formatted_minutes(entry.minutes)
+              td = entry.project.name
+              td
+                = entry.description
+                span.actions
+                  = link_to entry_path(entry), data: { confirm: t('common.are_you_sure'), method: 'delete' }, class: 'btn btn-default btn-sm' do
+                    .glyphicon.glyphicon-trash
 
     - if @entries.any?
       tfoot
         tr.summary
           th colspan=3 = formatted_minutes(@total, legend: true)
 
-  = render 'pagination', position: 'bottom'
+javascript:
+  $(function() {
+    new EntriesForm($('#entries-form'))
+  })

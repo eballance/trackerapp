@@ -4,12 +4,11 @@ Trackerapp::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
 
+  get "report" => "entries#index"
+
   resources :sessions
 
-  resources :entries do
-    get :autocomplete_project_name, :on => :collection
-  end
-
+  resources :entries
   get 'settings', to: 'users#edit'
 
   resource :user do
