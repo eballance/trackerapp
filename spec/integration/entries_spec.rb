@@ -7,6 +7,10 @@ describe "Entries" do
       @project = FactoryGirl.create(:project, users: [@user])
     end
 
+    before('cerate entry and rememberes project') do
+      @another_project = FactoryGirl.create(:project, users: [@user])
+    end
+
     it "lists existing entries" do
       login_user_with_request(@user)
 
@@ -61,6 +65,19 @@ describe "Entries" do
       first(:link, 1.month.from_now.strftime("%B")).click
       page.should have_content("test description 7")
 
+    end
+
+    it "cerate entry and rememberes project", js: true do
+      login_user_manually(@user)
+
+      page.should have_content("0 hours and 0 minutes")
+
+      fill_in 'entry_form_time_spent', with: "3.5 h"
+      select @another_project.name, from: 'entry_form_project_id'
+      fill_in 'entry_form_description', with: "Another project description"
+      click_button 'Add'
+      page.should have_content("Another project description")
+      expect(page).to have_select('entry_form_project_id', selected: @another_project.name)
     end
   end
 
