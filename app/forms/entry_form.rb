@@ -7,6 +7,7 @@ class EntryForm < Form
   validates :minutes, presence: true
 
   def initialize(attributes = {})
+    @project_id = select_latest_project(attributes.delete(:user))
     return if attributes.blank?
 
     @date = Date.parse(attributes.delete(:date))
@@ -22,7 +23,7 @@ class EntryForm < Form
   end
 
   def date_in_words
-    # if date was set to today, or wasnt set at all
+    # if date was set to today, or wasn't set at all
     if (@date.present? && @date == Date.current) || @date.blank?
       I18n.t('entries.today_change').html_safe
     else
@@ -30,8 +31,11 @@ class EntryForm < Form
     end
   end
 
+  private
+
   def select_latest_project(user)
+    return unless user
     latest_entry = user.entries.by_created_at.first
-    @project_id = latest_entry.project_id if latest_entry
+    latest_entry.project_id if latest_entry
   end
 end

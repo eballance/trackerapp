@@ -7,6 +7,12 @@ describe "Entries" do
       @project = FactoryGirl.create(:project, users: [@user])
     end
 
+    let(:another_project) do
+      project = FactoryGirl.create(:project, users: [@user])
+      FactoryGirl.create(:entry, date: 1.month.from_now, project: project, user: @user)
+      project
+    end
+
     it "lists existing entries" do
       login_user_with_request(@user)
 
@@ -63,25 +69,9 @@ describe "Entries" do
 
     end
 
-    it "create entry and rememberes the project", js: true do
-      another_project = FactoryGirl.create(:project, users: [@user])
-
+    it "creates entry and rememberes the project", js: true do
       login_user_manually(@user)
-
-      page.should have_content("0 hours and 0 minutes")
-
-      fill_in 'entry_form_time_spent', with: "3.5 h"
-      select @project.name, from: 'entry_form_project_id'
-      fill_in 'entry_form_description', with: "First project description"
-      click_button 'Add'
-
-      fill_in 'entry_form_time_spent', with: "3.5 h"
-      select another_project.name, from: 'entry_form_project_id'
-      fill_in 'entry_form_description', with: "Another project description"
-      click_button 'Add'
-
-      page.should have_content("Another project description")
-      expect(page).to have_select('entry_form_project_id', selected: another_project.name)
+      page.should have_select('entry_form_project_id', selected: another_project.name)
     end
   end
 

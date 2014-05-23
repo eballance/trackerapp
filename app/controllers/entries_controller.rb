@@ -14,8 +14,7 @@ class EntriesController < ApplicationController
     @entries = Entry.for_user(current_user).between(@from, @next_month).by_date
     @total = @entries.sum(:minutes)
 
-    @entry_form ||= EntryForm.new
-    @entry_form.select_latest_project(current_user)
+    @entry_form ||= EntryForm.new(user: current_user)
   end
 
   def new
