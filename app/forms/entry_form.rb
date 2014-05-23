@@ -30,4 +30,8 @@ class EntryForm < Form
     end
   end
 
+  def select_latest_project(user)
+    latest_entry = user.entries.by_created_at.first
+    @project_id = latest_entry.project_id if latest_entry
+  end
 end

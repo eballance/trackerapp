@@ -11,5 +11,6 @@ class Entry < ActiveRecord::Base
   scope :for_project, ->(project) { where(project_id: project.id) }
   scope :between, ->(from, to) { where(date: from..to) }
   scope :by_date, -> { order('date asc') }
+  scope :by_created_at, -> { order('created_at desc') }
 
 end

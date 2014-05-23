@@ -15,7 +15,7 @@ class EntriesController < ApplicationController
     @total = @entries.sum(:minutes)
 
     @entry_form ||= EntryForm.new
-    @entry_form.project_id = params[:recent_project] if params[:recent_project].present?
+    @entry_form.select_latest_project(current_user)
   end
 
   def new
@@ -25,7 +25,7 @@ class EntriesController < ApplicationController
   def create
     @entry_form = EntryForm.new(entry_form_params)
     if @entry_form.submit
-      redirect_to entries_path(recent_project: @entry_form.project_id), :notice => t('entries.entry_created')
+      redirect_to entries_path, :notice => t('entries.entry_created')
     else
       index
       render :index
