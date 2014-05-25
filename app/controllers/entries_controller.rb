@@ -14,15 +14,15 @@ class EntriesController < ApplicationController
     @entries = Entry.for_user(current_user).between(@from, @next_month).by_date
     @total = @entries.sum(:minutes)
 
-    @entry_form ||= EntryForm.new
+    @entry_form ||= EntryForm.new(current_user)
   end
 
   def new
-    @entry_form = EntryForm.new
+    @entry_form = EntryForm.new(current_user)
   end
 
   def create
-    @entry_form = EntryForm.new(entry_form_params)
+    @entry_form = EntryForm.new(current_user, entry_form_params)
     if @entry_form.submit
       redirect_to entries_path, :notice => t('entries.entry_created')
     else
@@ -41,8 +41,8 @@ class EntriesController < ApplicationController
   private
   def entry_form_params
     params.require(:entry_form).
-      permit(:description, :date, :time_spent, :project_id, :links).
-      merge(user_id: current_user.id)
+        permit(:description, :date, :time_spent, :project_id, :links).
+        merge(user_id: current_user.id)
   end
 
 end

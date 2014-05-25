@@ -62,6 +62,13 @@ describe "Entries" do
       page.should have_content("test description 7")
 
     end
+
+    it "creates entry and remembers project" do
+      second_project = FactoryGirl.create(:project, users: [@user])
+      FactoryGirl.create(:entry, date: 1.month.from_now, project: second_project, user: @user)
+      login_user_manually(@user)
+      page.should have_select('entry_form_project_id', selected: second_project.name)
+    end
   end
 
   describe "Admin" do
