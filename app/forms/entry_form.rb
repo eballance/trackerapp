@@ -7,7 +7,11 @@ class EntryForm < Form
   validates :minutes, presence: true
 
   def initialize(attributes = {})
-    @project_id = select_latest_project(attributes.delete(:user))
+    if attributes[:user]
+      latest_entry = attributes.delete(:user).entries.by_created_at.first
+      @project_id = latest_entry.project_id if latest_entry
+    end
+
     return if attributes.blank?
 
     @date = Date.parse(attributes.delete(:date))
@@ -29,13 +33,5 @@ class EntryForm < Form
     else
       I18n.l(@date, :format => "d% %B, %Y")
     end
-  end
-
-  private
-
-  def select_latest_project(user)
-    return unless user
-    latest_entry = user.entries.by_created_at.first
-    latest_entry.project_id if latest_entry
   end
 end

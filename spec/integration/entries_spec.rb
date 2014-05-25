@@ -7,7 +7,7 @@ describe "Entries" do
       @project = FactoryGirl.create(:project, users: [@user])
     end
 
-    let(:another_project) do
+    let(:project_with_entry) do
       project = FactoryGirl.create(:project, users: [@user])
       FactoryGirl.create(:entry, date: 1.month.from_now, project: project, user: @user)
       project
@@ -69,9 +69,10 @@ describe "Entries" do
 
     end
 
-    it "creates entry and rememberes the project", js: true do
+    it "creates entry and rememberes project" do
+      project_with_entry
       login_user_manually(@user)
-      page.should have_select('entry_form_project_id', selected: another_project.name)
+      page.should have_select('entry_form_project_id', selected: project_with_entry.name)
     end
   end
 
