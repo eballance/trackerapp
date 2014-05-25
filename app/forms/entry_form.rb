@@ -6,11 +6,9 @@ class EntryForm < Form
   validates :date, presence: true
   validates :minutes, presence: true
 
-  def initialize(attributes = {})
-    if attributes[:user]
-      latest_entry = attributes.delete(:user).entries.by_created_at.first
-      @project_id = latest_entry.project_id if latest_entry
-    end
+  def initialize(user, attributes = {})
+    latest_entry = user.entries.by_created_at.first
+    @project_id = latest_entry.project_id if latest_entry
 
     return if attributes.blank?
 
