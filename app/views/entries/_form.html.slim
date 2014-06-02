@@ -1,6 +1,7 @@
 .form-inline.box
-
-  h1 = t('entries.track_time')
+  
+  div.box-nav
+    h1 = t('entries.track_time')
 
   = form_for @entry_form, url: entries_path, html: { id: 'entry-form', class: 'form-inline' }, role: 'form' do |f|
 

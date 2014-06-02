@@ -1,8 +1,8 @@
 div class="box-nav filter-#{position}"
+  
+  h1= formatted_minutes(@entry_finder.total, legend: true)
 
   = form_tag request.path, method: 'get', id: 'entries-form' do |f|
 
     = select_tag :project_id, options_from_collection_for_select(current_user.projects, :id, :name, params[:project_id]), prompt: "All projects", class: 'heading form-control'
 
-
-.total = "#{t('entries.total')}: #{formatted_minutes(@total, legend: true)}"

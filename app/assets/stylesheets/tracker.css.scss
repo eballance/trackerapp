@@ -57,19 +57,6 @@ body {
   padding: 20px;
   background: white;
 
-  h1 {
-    position: absolute;
-    top: -33px;
-    left: 23px;
-    border-radius: 3px;
-    border: 1px solid $border-gray;
-    padding: 5px 10px;
-    font-size: 13px;
-    color: $gray;
-    background: #D8D8D8;
-    font-family: 'Fjalla One', Georgia, serif;
-  }
-
   .alert {
     margin-top: 10px;
 
@@ -86,14 +73,22 @@ body {
 
   .box-nav {
     position: absolute;
-    top: -11px;
+    top: -12px;
 
-    .heading {
+    h1 {
+      float: left;
+      border-radius: 3px;
+      border: 1px solid $border-gray;
+      margin: 0 10px 0 0;
+      padding: 5px 10px;
+      font-size: 15px;
+      color: $gray;
+      background: #D8D8D8;
+      font-family: 'Fjalla One', Georgia, serif;
+    }
 
-      &.form-control {
-        height: 24px;
-        border: 1px solid $border-gray;
-      }
+    form {
+      float: right;
     }
 
     &.filter-bottom {
@@ -116,17 +111,17 @@ body {
         background: white;
 
       }
+
+    }
+
+    .form-control {
+      height: 28px;
+      border: 1px solid $border-gray;
     }
 
     span.btn-box {
       background: white;
     }
-  }
-
-  .total {
-    position: absolute;
-    top: 3px;
-    right: 20px;
   }
 
   .table {
