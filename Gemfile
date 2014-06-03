@@ -28,6 +28,9 @@ group :development do
   gem 'better_errors'
   gem 'quiet_assets'
   gem 'binding_of_caller'
+
+  gem 'capistrano', '~> 2.0'
+  gem 'capistrano-ext'
 end
 
 group :test do
