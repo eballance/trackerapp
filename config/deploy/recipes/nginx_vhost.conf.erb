@@ -14,6 +14,7 @@ server {
   root <%= current_path %>/public;
 
   passenger_enabled on;
+  passenger_min_instances 1;
   passenger_ruby /usr/local/rbenv/shims/ruby;
   rails_env <%= rails_env %>;
 
@@ -41,3 +42,5 @@ server {
   }
 <% end %>
 }
+
+passenger_pre_start http://<%= domain %>/;
