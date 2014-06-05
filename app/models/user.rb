@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :confirmation => true, :on => :create
   validates :password_confirmation, :presence => true, :on => :create
   validates_inclusion_of :language, :in => %w( en cs ), :message => I18n.t("users.language_has_to_be")
+  validates :account_id, presence: true
 
   serialize :settings, Hash
 

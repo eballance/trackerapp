@@ -1,10 +1,15 @@
 FactoryGirl.define do
+  factory :account do
+    sequence(:name) { |n| "Test account #{n}" }
+  end
+
   factory :user do
     username "tester"
     email "tester@test.com"
     password "secret"
     password_confirmation "secret"
     language "en"
+    account
   end
 
   factory :admin, class: User do
@@ -14,6 +19,7 @@ FactoryGirl.define do
     password_confirmation "secret"
     admin true
     language "en"
+    account
   end
 
   factory :entry do

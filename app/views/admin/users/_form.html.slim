@@ -1,4 +1,3 @@
-
 = form_for [:admin, @user], html: { id: 'admin-user-form', class: 'form-horizontal'} do |f|
 
   = render 'layouts/errors', object: @user
@@ -22,6 +21,11 @@
     = f.label :password_confirmation, t('users.password_confirmation'), class: 'col-sm-4 control-label'
     .col-sm-4
       = f.password_field :password_confirmation, class: 'form-control'
+
+  .form-group
+    = f.label :account_id, t('admin.account'), class: 'col-sm-4 control-label'
+    .col-sm-4
+      = f.collection_select :account_id, Account.all, :id, :name, {}, class: 'form-control'
 
   .form-group
     = f.label :language, t('users.language'), class: 'col-sm-4 control-label'
