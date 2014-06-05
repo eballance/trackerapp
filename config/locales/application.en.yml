@@ -75,6 +75,7 @@ en:
     add_project: "Add project"
     soldier: "Soldier"
     soldiers: "Soldiers"
+    account: "Account"
   sessions:
     logged_in: "Logged in!"
     invalid_credentials: "Username or password was invalid"

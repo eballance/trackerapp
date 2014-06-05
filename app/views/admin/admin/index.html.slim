@@ -13,6 +13,7 @@
       tr
         th #{t('admin.name')}
         th #{t('admin.email')}
+        th #{t('admin.account')}
         th #{t('admin.type')}
         th
     tbody
@@ -20,6 +21,7 @@
         tr
           td = user.username
           td = user.email
+          td = user.account.name
           td = user.type_in_words
           td
             .pull-right
