@@ -4,7 +4,7 @@ class AddAccountToUsers < ActiveRecord::Migration
 
     reversible do
       initial_account = Account.create(name: 'Initial Account')
-      User.all.find_each { |user| user.update_column(:account_id, initial_account.id) }
+      User.find_each { |user| user.update_column(:account_id, initial_account.id) }
     end
   end
 end

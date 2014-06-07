@@ -23,11 +23,6 @@
       = f.password_field :password_confirmation, class: 'form-control'
 
   .form-group
-    = f.label :account_id, t('admin.account'), class: 'col-sm-4 control-label'
-    .col-sm-4
-      = f.collection_select :account_id, Account.all, :id, :name, {}, class: 'form-control'
-
-  .form-group
     = f.label :language, t('users.language'), class: 'col-sm-4 control-label'
     .col-sm-4
       = f.text_field :language, class: 'form-control'
