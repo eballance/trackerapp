@@ -1,11 +1,11 @@
 class Admin::UsersController < Admin::ApplicationController
 
   def new
-    @user = User.new
+    @user = current_account.users.new
   end
 
   def create
-    @user = User.new(user_params)
+    @user = current_account.users.new(user_params)
     if params[:user][:admin] == "1"
       @user.admin = true
     end
@@ -18,11 +18,11 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_account.users.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_account.users.find(params[:id])
 
     if @user.update(user_params)
       redirect_to edit_admin_user_path, :notice => t('users.user_updated')
@@ -32,14 +32,14 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = current_account.users.find(params[:id])
     @user.destroy
 
     redirect_to admin_path, :notice => t('users.user_deleted')
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_account.users.find(params[:id])
 
     @from = if params[:from].present?
               Date.parse(params[:from])

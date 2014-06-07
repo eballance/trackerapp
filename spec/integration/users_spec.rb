@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe "User" do
   before(:each) do
-    @user = FactoryGirl.create(:user)
-    @admin = FactoryGirl.create(:admin)
+    @account = FactoryGirl.create(:account)
+    @user = FactoryGirl.create(:user, account: @account)
+    @admin = FactoryGirl.create(:admin, account: @account)
     @project = FactoryGirl.create(:project, users: [@user, @admin])
 
     login_user_with_request(@admin)
