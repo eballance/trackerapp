@@ -1,11 +1,11 @@
 class Admin::ProjectsController < Admin::ApplicationController
 
   def new
-    @project = Project.new
+    @project = current_account.projects.new
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = current_account.projects.new(project_params)
 
     if @project.save
       redirect_to admin_path, :notice => t('projects.project_created')
@@ -15,11 +15,11 @@ class Admin::ProjectsController < Admin::ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @project = current_account.projects.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
+    @project = current_account.projects.find(params[:id])
 
     if @project.update(project_params)
       redirect_to admin_path, :notice => t('projects.project_updated')
@@ -29,14 +29,14 @@ class Admin::ProjectsController < Admin::ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
+    @project = current_account.projects.find(params[:id])
     @project.destroy
 
     redirect_to admin_path, :notice => t('projects.project_deleted')
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = current_account.projects.find(params[:id])
 
     @from = if params[:from].present?
               Date.parse(params[:from])

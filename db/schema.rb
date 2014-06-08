@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140528184444) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
 
   create_table "salaries", force: true do |t|

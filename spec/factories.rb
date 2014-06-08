@@ -30,6 +30,7 @@ FactoryGirl.define do
 
   factory :project do
     sequence(:name) { |n| "test project #{n}" }
+    account
   end
 
   factory :ProjectUser do

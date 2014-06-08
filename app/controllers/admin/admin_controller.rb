@@ -1,7 +1,7 @@
 class Admin::AdminController < Admin::ApplicationController
 
   def index
-    @projects = Project.all
+    @projects = current_account.projects.all
     @users = current_account.users.all
   end
 
