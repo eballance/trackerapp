@@ -10,7 +10,7 @@
   .form-group
     = f.label :users, t('projects.users'), class: 'col-sm-4 control-label'
     .col-sm-4
-      = f.collection_select :user_ids, User.all, :id, :username, { include_blank: true }, { multiple: true, class: 'form-control'}
+      = f.collection_select :user_ids, current_account.users.all, :id, :username, { include_blank: true }, { multiple: true, class: 'form-control'}
 
   .form-group
     .col-sm-offset-4.col-sm-4

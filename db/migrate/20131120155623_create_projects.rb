@@ -1,6 +1,10 @@
 # Both current users needs to be created before running
 # this migration.
 class CreateProjects < ActiveRecord::Migration
+  class Project < ActiveRecord::Base
+
+  end
+
   def change
     create_table :projects do |t|
       t.string :name

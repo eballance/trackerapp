@@ -78,6 +78,7 @@ cs:
     add_project: "Přidat projekt"
     soldier: "Voják"
     soldiers: "Vojáci"
+    account: "Účet"
   sessions:
     logged_in: "Přihlášen/a!"
     invalid_credentials: "Username or password was invalid"
