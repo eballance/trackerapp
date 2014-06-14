@@ -48,6 +48,7 @@ class EntriesController < ApplicationController
   end
 
   private
+
     def entry_form_params
       params.require(:entry_form).
         permit(:description, :date, :time_spent, :project_id, :links).

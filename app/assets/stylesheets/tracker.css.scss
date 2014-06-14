@@ -74,6 +74,7 @@ body {
   .box-nav {
     position: absolute;
     top: -12px;
+    width: 100%;
 
     h1 {
       float: left;
@@ -84,43 +85,45 @@ body {
       font-size: 15px;
       color: $gray;
       background: #D8D8D8;
-      font-family: 'Fjalla One', Georgia, serif;
+      font-weight: bold;
     }
 
-    form {
-      float: right;
+    #entries-form {
+
+      .form-control {
+        height: 30px;
+        border: 1px solid $border-gray;
+      }
+
+      .project {
+        position: absolute;
+        right: 300px;
+
+        select {
+          max-width: 150px;
+        }
+      }
+
+      .time {
+        position: absolute;
+        top: 5px;
+        right: 20px;
+      }
     }
 
-    &.filter-bottom {
-      top: inherit;
-      bottom: -11px;
-    }
-
-    .btn-box {
-      margin: 0 10px;
+    a {
+      margin: 0 5px;
       border-radius: 3px;
       border: 1px solid black;
       padding: 5px 10px;
       font-size: 13px;
       color: $gray;
-      background: #D8D8D8;
-      font-family: 'Fjalla One', Georgia, serif;
-
-      &:hover {
-        text-decoration: none;
-        background: white;
-
-      }
-
-    }
-
-    .form-control {
-      height: 28px;
-      border: 1px solid $border-gray;
-    }
-
-    span.btn-box {
       background: white;
+
+      &:hover, &.active {
+        text-decoration: none;
+        background: #D8D8D8;
+      }
     }
   }
 

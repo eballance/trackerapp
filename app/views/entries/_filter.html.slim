@@ -1,8 +1,15 @@
-div class="box-nav filter-#{position}"
+div.box-nav
   
   h1= formatted_minutes(@entry_finder.total, legend: true)
 
   = form_tag request.path, method: 'get', id: 'entries-form' do |f|
 
-    = select_tag :project_id, options_from_collection_for_select(current_user.projects, :id, :name, params[:project_id]), prompt: "All projects", class: 'heading form-control'
+    .project
+      = select_tag :project_id, options_from_collection_for_select(current_user.projects, :id, :name, params[:project_id]), prompt: "All projects", class: 'heading form-control'
+      = hidden_field_tag 'kind', @entry_finder.kind
+
+    .time
+      = link_to_entries('This month', 'this_month', @entry_finder.kind)
+      = link_to_entries('Last month', 'last_month', @entry_finder.kind)
+      = link_to_entries('Date range', 'date_range', @entry_finder.kind, data: { behavior: 'toggle-date-range-select'})
 
