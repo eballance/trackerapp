@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # stack
-gem 'rails', '~> 4.1.0'
+gem 'rails'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.1'
 gem 'bootstrap-sass', '~> 3.1.1'
