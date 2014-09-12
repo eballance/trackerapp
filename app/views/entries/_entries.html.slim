@@ -6,10 +6,11 @@
     tbody
       - @entry_finder.entries.group_by{|e| "#{e.date.year}-#{e.date.month}" }.sort.reverse.each do |year_month, month_entries|
 
-        tr.month-summary
-          td colspan="3"
-            = "#{t('entries.total_month')} #{Date.parse("#{year_month}-1").strftime("%B")}: "
-            strong = formatted_minutes(month_entries.sum(&:minutes), legend: true)
+        - if @entry_finder.kind == 'range'
+          tr.month-summary
+            td colspan="3"
+              = "#{t('entries.total_month')} #{Date.parse("#{year_month}-1").strftime("%B")}: "
+              strong = formatted_minutes(month_entries.sum(&:minutes), legend: true)
 
         - month_entries.group_by(&:date).sort.reverse.each do |date, entries|
 

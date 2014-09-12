@@ -41,27 +41,21 @@ $input-border-focus: gray;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-detail:before {
+.icon-download:before {
   content: "\21";
 }
-.icon-remove:before {
+.icon-user:before {
   content: "\22";
 }
-.icon-edit:before {
+.icon-users:before {
   content: "\23";
 }
-.icon-users:before {
+.icon-settings:before {
   content: "\24";
 }
-.icon-user:before {
+.icon-remove:before {
   content: "\25";
 }
-.icon-projects:before {
-  content: "\26";
-}
 .icon-turnoff:before {
-  content: "\27";
-}
-.icon-settings:before {
-  content: "\28";
+  content: "\26";
 }

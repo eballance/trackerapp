@@ -60,6 +60,7 @@ body {
   .box-nav {
     position: absolute;
     top: -12px;
+    padding-right: 30px;
     width: 100%;
 
     h1 {
@@ -67,44 +68,46 @@ body {
       border-radius: 3px;
       border: 1px solid $border-gray;
       margin: 0 10px 0 0;
-      padding: 5px 10px;
-      font-size: 15px;
+      padding: 7px 10px;
+      font-size: 14px;
       color: $gray;
       background: #D8D8D8;
       font-weight: bold;
     }
 
-    #entries-form {
+    .form-control {
+      height: 31px;
+      border: 1px solid $border-gray;
+      cursor: pointer;
+    }
 
-      .form-control {
-        height: 30px;
-        border: 1px solid $border-gray;
+    .project {
+      float: left;
+
+      select {
+        max-width: 150px;
       }
+    }
 
-      .project {
-        position: absolute;
-        right: 300px;
+    .time {
+      float: left;
+    }
 
-        select {
-          max-width: 150px;
-        }
-      }
+    .box-nav-fragment {
+      margin: 0 5px;
+      border-radius: 3px;
+      border: 1px solid $border-gray;
+      font-size: 14px;
+      background: white;
 
-      .time {
-        position: absolute;
-        top: 5px;
-        right: 20px;
+      a {
+        display: inline-block;
+        padding: 5px 10px;
       }
     }
 
     a {
-      margin: 0 5px;
-      border-radius: 3px;
-      border: 1px solid black;
-      padding: 5px 10px;
-      font-size: 13px;
       color: $gray;
-      background: white;
 
       &:hover, &.active {
         text-decoration: none;
