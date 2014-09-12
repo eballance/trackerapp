@@ -2,7 +2,6 @@ class @EntryForm
 
   constructor: (@form, @locale) ->
     @initDatepicker()
-    @initValidations()
 
   initDatepicker: ->
     configuration = {
@@ -21,3 +20,6 @@ class @EntryForm
         weekdaysShort: [ 'ne', 'po', 'út', 'st', 'čt', 'pá', 'so' ]
       }
     }
+
+    picker = @form.find('.datepicker').pickadate(configuration[@locale]).pickadate('picker')
+    $(picker._hidden).attr('name', 'entry_form[date]').attr('id', 'entry_form_date')

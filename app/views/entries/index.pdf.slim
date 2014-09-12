@@ -1,7 +1,7 @@
 h1 Time report
 
 ul
-  li= "Project: #{@entry_finder.project_name}" if @project
+  li= "Project: #{@entry_finder.project_name}" if @entry_finder.project
   li= "Period: #{I18n.l(@entry_finder.from, format: :short)} - #{I18n.l(@entry_finder.to, format: :short)}"
   li= "Total: #{formatted_minutes(@entry_finder.total, legend: true)}"
 
@@ -17,4 +17,4 @@ table.table.table-condensed
         tr.entry
           td = formatted_minutes(entry.minutes)
           td = entry.project.name
-          td = "#{entry.description} #{entry.links}"
+          td = "#{entry.links}"
