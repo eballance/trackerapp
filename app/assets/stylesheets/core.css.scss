@@ -71,7 +71,7 @@ body {
       padding: 7px 10px;
       font-size: 14px;
       color: $gray;
-      background: #D8D8D8;
+      background: white;
       font-weight: bold;
     }
 
@@ -109,10 +109,15 @@ body {
     a {
       color: $gray;
 
-      &:hover, &.active {
-        text-decoration: none;
+      &.inactive {
         background: #D8D8D8;
       }
+
+      &:hover, &.active {
+        text-decoration: none;
+        background: white;
+      }
+
     }
   }
 
