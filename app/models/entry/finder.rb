@@ -6,19 +6,33 @@ class Entry
 
     attr_accessor :kind
 
-    def initialize(user, options)
-      @user = user
+    def initialize(options = {})
       @options = options
-      @project_id = options[:project_id]
-      @kind = options[:kind] || 'this_month'
+      @kind    = options[:kind] || 'this_month'
+    end
+
+    def user
+      @user ||= if @options[:user]
+                  @options.delete(:user)
+                elsif @options[:user_id].present?
+                  project.users.find(@options.delete(:user_id))
+                end
+    end
+
+    def project
+      @project  ||= if @options[:project]
+                      @options.delete(:project)
+                    elsif @options[:project_id].present?
+                      user.projects.find(@options.delete(:project_id))
+                    end
     end
 
     def entries
       @entries ||= begin
-        entries = Entry.for_user(@user).by_date
+        entries = Entry.by_date.merge(Entry.between(from, to))
+        entries = entries.for_user(@user) if user
         entries = entries.for_project(project.id) if project
-        entries = entries.merge(Entry.between(from, to))
-        entries.by_date
+        entries
       end
     end
 
@@ -48,12 +62,8 @@ class Entry
       end
     end
 
-    def project
-      @project ||= @user.projects.find(@project_id) if @project_id.present?
-    end
-
     def project_name
-      project.try(:name)
+      project.try(:name).presence || "All projects"
     end
 
     def total

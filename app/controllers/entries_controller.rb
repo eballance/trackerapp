@@ -2,22 +2,15 @@ class EntriesController < ApplicationController
   before_filter :require_login
 
   def index
-    @from = if params[:from].present?
-              Date.parse(params[:from])
-            else
-              (Date.current - 2.months).at_beginning_of_month.to_date
-            end
-    @to =   if params[:to].present?
-              Date.parse(params[:to])
-            else
-              Date.current
-            end
+    puts finder_params.inspect
+    @entry_finder = Entry::Finder.new(finder_params)
+    @entry_form ||= EntryForm.new
 
-    @entries = Entry.for_user(current_user).between(@from, @to).by_date
-
-    if params[:project_id].present?
-      @entries = @entries.for_projects([params[:project_id]])
-      @project = Project.find(params[:project_id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        send_pdf_data('entries/index.pdf.slim', 'report.pdf')
+      end
     end
 
     @total = @entries.sum(:minutes)
@@ -53,6 +46,10 @@ class EntriesController < ApplicationController
       params.require(:entry_form).
         permit(:description, :date, :time_spent, :project_id, :links).
         merge(user_id: current_user.id)
+    end
+
+    def finder_params
+      params.permit(:project_id, :kind).merge(user: current_user)
     end
 
 end

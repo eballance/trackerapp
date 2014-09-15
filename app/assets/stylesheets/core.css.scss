@@ -1,3 +1,4 @@
+@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "settings";
 
@@ -81,7 +82,7 @@ body {
       cursor: pointer;
     }
 
-    .project {
+    .project, .user {
       float: left;
 
       select {

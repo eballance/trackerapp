@@ -5,7 +5,8 @@
   h1 = t('admin.users')
 
   .box-nav
-    = link_to new_admin_user_path, class: 'btn-box' do
+    .box-nav-fragment.pull-right
+      = link_to new_admin_user_path, class: 'btn-box' do
       span.glyphicon-plus #{t('admin.add_user')}
 
   table.table

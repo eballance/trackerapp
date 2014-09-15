@@ -40,14 +40,23 @@ class Admin::UsersController < Admin::ApplicationController
 
   def show
     @user = current_account.users.find(params[:id])
-    @entry_finder = Entry::Finder.new(@user, params)
+    @entry_finder = Entry::Finder.new(finder_params)
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        send_pdf_data('entries/index.pdf.slim', 'report.pdf')
+      end
+    end
   end
 
   private
+    def user_params
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :admin, :language, :current_salary)
+    end
 
-  def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :admin, :language,
-                                 :current_salary)
-  end
+    def finder_params
+      params.permit(:project_id, :kind).merge(user: @user)
+    end
 
 end
