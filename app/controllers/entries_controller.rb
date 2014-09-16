@@ -3,7 +3,7 @@ class EntriesController < ApplicationController
 
   def index
     @entry_finder = Entry::Finder.new(finder_params)
-    @entry_form ||= EntryForm.new
+    @entry_form ||= EntryForm.new(current_user)
 
     respond_to do |format|
       format.html
@@ -11,11 +11,6 @@ class EntriesController < ApplicationController
         send_pdf_data('entries/index.pdf.slim', 'report.pdf')
       end
     end
-
-    @total = @entries.sum(:minutes)
-
-    @entry_form ||= EntryForm.new(current_user)
-
   end
 
   def new
