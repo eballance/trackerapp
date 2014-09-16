@@ -26,12 +26,8 @@ describe "Project" do
       first(:link, "View").click
       page.should have_content(entry.description)
 
-      first(:link, 1.month.ago.strftime("%B")).click
+      click_link("Last month")
       page.should have_content(entry_previous.description)
-
-      first(:link, Date.current.strftime("%B")).click
-      first(:link, 1.month.from_now.strftime("%B")).click
-      page.should have_content(entry_next.description)
     end
 
     it "shows no entries for project which has none" do
@@ -71,4 +67,3 @@ describe "Project" do
     end
   end
 end
-

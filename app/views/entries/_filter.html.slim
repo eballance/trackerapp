@@ -1,0 +1,21 @@
+div.box-nav
+
+  = form_tag request.path, method: 'get', id: 'entries-form' do |f|
+
+    h1 = formatted_minutes(@entry_finder.total, legend: true)
+
+    - if params[:controller] == 'admin/projects'
+      .user
+        = select_tag :user_id, options_from_collection_for_select(@project.users, :id, :username, params[:user_id]), prompt: "All users", class: ' form-control'
+    - else
+      .project
+        = select_tag :project_id, options_from_collection_for_select(current_user.projects, :id, :name, params[:project_id]), prompt: "All projects", class: ' form-control'
+
+    .time.box-nav-fragment
+      = link_to_entries('This month', 'this_month', @entry_finder.kind)
+      = link_to_entries('Last month', 'last_month', @entry_finder.kind)
+      = hidden_field_tag 'kind', @entry_finder.kind
+      /= link_to_entries('From - To', 'date_range', @entry_finder.kind, data: { behavior: 'toggle-date-range-select'})
+
+    .actions.box-nav-fragment.pull-right
+      = link_to "", params.merge(format: 'pdf'), class: 'icon-download'

@@ -1,11 +1,11 @@
 .form-inline.box
-
-  h1 = t('entries.track_time')
+  
+  div.box-nav
+    h1 = t('entries.track_time')
 
   = form_for @entry_form, url: entries_path, html: { id: 'entry-form', class: 'form-inline' }, role: 'form' do |f|
 
     = render 'layouts/errors', object: @entry_form
-    div id="entry_form_time_spent_error" class="alert alert-danger"
 
     .row
 
@@ -16,7 +16,7 @@
         .col-sm-4.form-group
           = f.collection_select :project_id, current_user.projects, :id, :name, {}, class: "form-control"
 
-        .col-sm-4.form-group
+        .col-sm-4.form-group.clearfix
           = text_field_tag :date, @entry_form.date_in_words, class: 'datepicker'
 
         .col-sm-6

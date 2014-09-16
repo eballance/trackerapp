@@ -1,28 +1,28 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 # stack
-gem 'rails', '~> 4.1.0'
+gem 'rails'
 gem 'sqlite3'
-gem 'sass-rails', '~> 4.0.1'
-gem 'bootstrap-sass', '~> 3.1.1'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.1'
+gem 'sass-rails'
+gem 'bootstrap-sass'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'therubyracer', platforms: :ruby
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 gem 'slim'
 
 # functionality
 gem 'sorcery', '~> 0.8.5'
+gem 'pdfkit'
 gem 'httparty'
 gem 'letsfreckle-client', require: 'letsfreckle'
 
 # javascripts
 gem 'jquery-cdn'
-gem 'rails-behaviors', github: 'josh/rails-behaviors', branch: 'v0.4.1'
+gem 'rails-behaviors', github: 'josh/rails-behaviors', tag: 'v0.4.1'
 gem 'pickadate-rails'
 gem 'select2-rails'
-# gem "i18n-js"
-# gem 'turbolinks'
 
 group :development do
   gem 'better_errors'

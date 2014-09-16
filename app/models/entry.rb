@@ -8,7 +8,7 @@ class Entry < ActiveRecord::Base
   validates :minutes, presence: true, numericality: true
 
   scope :for_user, ->(user) { where(user_id: user.id) }
-  scope :for_project, ->(project) { where(project_id: project.id) }
+  scope :for_project, ->(project_id) { where(project_id: project_id) }
   scope :between, ->(from, to) { where(date: from..to) }
   scope :by_date, -> { order('date asc') }
   scope :by_created_at, -> { order('created_at desc') }

@@ -21,11 +21,15 @@ en:
     and: "and"
     entries: "Entries"
     total: "Total"
+    total_month: "Total in "
     track_time: "Track time"
     save: "Save"
     description: "Description"
     task_url: "Task URL or URLs"
     add: "Add"
+    finder:
+      kinds:
+        range: "Search by date range"
   projects:
     project_created: "Project created."
     project_updated: "Project updated."

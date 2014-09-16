@@ -16,7 +16,18 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_user_language
-    I18n.locale = current_user.language if logged_in?
-  end
+    def set_user_language
+      I18n.locale = current_user.language if logged_in?
+    end
+
+    def send_pdf_data(template, filename)
+      html = render_to_string(template: template, layout: 'application.pdf.slim')
+
+      pdfkit = PDFKit.new(html)
+      pdfkit.stylesheets << Rails.root.join('vendor/assets/stylesheets/bootstrap.min.css')
+      pdfkit.stylesheets << Rails.root.join('app/assets/stylesheets/pdf.css')
+
+      send_data(pdfkit.to_pdf, filename: filename, type: 'application/pdf')
+    end
+
 end

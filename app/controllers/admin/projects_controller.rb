@@ -37,24 +37,24 @@ class Admin::ProjectsController < Admin::ApplicationController
 
   def show
     @project = current_account.projects.find(params[:id])
+    @entry_finder = Entry::Finder.new(finder_params)
 
-    @from = if params[:from].present?
-              Date.parse(params[:from])
-            else
-              Date.new(Date.current.year, Date.current.month, 1)
-            end
-
-    @previous_month = (@from - 1.month).at_beginning_of_month
-    @next_month = (@from + 1.month).at_beginning_of_month
-
-    @entries = Entry.for_project(@project).between(@from, @next_month).by_date
-    @total = @entries.sum(:minutes)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        send_pdf_data('entries/index.pdf.slim', 'report.pdf')
+      end
+    end
   end
 
   private
 
-  def project_params
-    params.require(:project).permit!
-  end
+    def project_params
+      params.require(:project).permit!
+    end
+
+    def finder_params
+      params.permit(:user_id, :kind).merge(project: @project)
+    end
 
 end
