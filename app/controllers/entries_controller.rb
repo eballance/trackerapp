@@ -2,7 +2,6 @@ class EntriesController < ApplicationController
   before_filter :require_login
 
   def index
-    puts finder_params.inspect
     @entry_finder = Entry::Finder.new(finder_params)
     @entry_form ||= EntryForm.new
 

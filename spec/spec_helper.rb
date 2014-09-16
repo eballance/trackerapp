@@ -2,7 +2,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'capybara/rspec'
 require 'factory_girl'
 require 'support/test_helpers'
@@ -23,6 +22,14 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   config.include Sorcery::TestHelpers::Rails
   config.include Trackerapp::TestHelpers
+
+  config.mock_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+
   Capybara.javascript_driver = :webkit
 
   config.before(:suite) do

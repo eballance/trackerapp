@@ -7,7 +7,7 @@
   .box-nav
     .box-nav-fragment.pull-right
       = link_to new_admin_user_path, class: 'btn-box' do
-      span.glyphicon-plus #{t('admin.add_user')}
+        span.glyphicon-plus #{t('admin.add_user')}
 
   table.table
     thead
@@ -36,8 +36,9 @@
   h1 = t('admin.projects')
 
   .box-nav
-    = link_to new_admin_project_path, class: 'btn-box' do
-      span.glyphicon-plus #{t('admin.add_project')}
+    .box-nav-fragment.pull-right
+      = link_to new_admin_project_path, class: 'btn-box' do
+        span.glyphicon-plus #{t('admin.add_project')}
 
   table.table
 
