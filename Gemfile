@@ -19,7 +19,7 @@ gem 'letsfreckle-client', require: 'letsfreckle'
 
 # javascripts
 gem 'jquery-cdn'
-gem 'rails-behaviors', github: 'josh/rails-behaviors', branch: 'v0.4.1'
+gem 'rails-behaviors', github: 'josh/rails-behaviors', tag: 'v0.4.1'
 gem 'pickadate-rails'
 gem 'select2-rails'
 

@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/josh/rails-behaviors.git
   revision: 398ba851fc71b7f852bff77e669feb90cce55746
-  branch: v0.4.1
+  tag: v0.4.1
   specs:
     rails-behaviors (0.4.1)
       coffee-script (~> 2.2)
@@ -148,9 +148,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.6)
       sprockets-rails (~> 2.0)
-    rails-behaviors (0.4.1)
-      coffee-script-source (~> 1.1)
-      sprockets (~> 2.0)
     railties (4.1.6)
       actionpack (= 4.1.6)
       activesupport (= 4.1.6)
@@ -192,7 +189,7 @@ GEM
     spring (1.1.3)
     spring-commands-rspec (1.0.2)
       spring (>= 0.9.1)
-    sprockets (2.11.0)
+    sprockets (2.8.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -240,7 +237,7 @@ DEPENDENCIES
   pickadate-rails
   quiet_assets
   rails
-  rails-behaviors
+  rails-behaviors!
   rspec-rails
   sass-rails
   select2-rails
