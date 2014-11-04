@@ -17,4 +17,4 @@ table.table.table-condensed
         tr.entry
           td = formatted_minutes(entry.minutes)
           td = entry.project.name
-          td = "#{entry.links}"
+          td = [entry.description, entry.links].join(" ")
