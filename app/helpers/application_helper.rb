@@ -5,7 +5,13 @@ module ApplicationHelper
     result << " #{t('entries.hours')}" if options[:legend]
     result << ":" if not options[:legend]
     result << " #{t('entries.and')} " if options[:legend]
-    result << "#{minutes % 60}"
+
+    if options[:legend]
+      result << "%d" % (minutes % 60)
+    else
+      result << "%#2.2d" % (minutes % 60)
+    end
+
     result << " #{t('entries.minutes')}" if options[:legend]
     result
   end
