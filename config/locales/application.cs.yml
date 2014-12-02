@@ -66,6 +66,9 @@ cs:
     update: "Aktualizovat"
     salary: "Mzda"
     user: "Uživatel"
+    token: "Token"
+    token_reseted: "Token vyresetován."
+    reset_token: "Vyresetovat token"
   admin:
     users: "Uživatelé"
     add_user: "Přidat uživatele"

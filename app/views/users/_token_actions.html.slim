@@ -1,0 +1,8 @@
+.form-horizontal
+  .form-group
+    = label_tag :token, t('users.token'), class: 'col-sm-4 control-label'
+    .col-sm-4
+      = text_area_tag :token, current_user.token, class: 'form-control', rows: 4
+  .form-group
+    .col-sm-offset-4.col-sm-4
+      = button_to t('users.reset_token'), reset_token_user_path, class: 'btn btn-default'

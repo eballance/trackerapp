@@ -34,6 +34,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def reset_token
+    current_user.generate_token
+    redirect_to settings_path, :notice => t('users.token_reseted')
+  end
+
   private
 
   def password_form_params

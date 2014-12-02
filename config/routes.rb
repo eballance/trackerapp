@@ -19,6 +19,7 @@ Trackerapp::Application.routes.draw do
       patch :update_password
       get :update_password
       post :update_password
+      post :reset_token
     end
   end
 
