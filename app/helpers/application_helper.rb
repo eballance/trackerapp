@@ -43,4 +43,8 @@ module ApplicationHelper
   def title(page_title)
     content_for(:title) { page_title }
   end
+
+  def i18n_select_options
+    I18n.available_locales
+  end
 end
