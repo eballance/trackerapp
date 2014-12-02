@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528184444) do
+ActiveRecord::Schema.define(version: 20141202193915) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140528184444) do
     t.string   "language",                     default: "en"
     t.integer  "current_salary"
     t.integer  "account_id"
+    t.string   "token"
   end
 
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"

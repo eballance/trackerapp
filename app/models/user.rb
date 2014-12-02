@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   serialize :settings, Hash
 
   after_save :save_salary_history
+  after_create :generate_token
 
   def new_entries
     provider.all
@@ -41,6 +42,10 @@ class User < ActiveRecord::Base
       new_salary.ended_at = nil
       new_salary.save
     end
+  end
+
+  def generate_token
+    self.update_column(:token, SecureRandom.hex(32))
   end
 
   private
