@@ -20,4 +20,9 @@ describe Api::ApplicationController, type: :controller do
     get :index
     assert_response :bad_request
   end
+
+  it 'returns 400 for empty token' do
+    get :index, token: ''
+    assert_response :bad_request
+  end
 end
