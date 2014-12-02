@@ -1,6 +1,8 @@
 language: ruby
 rvm:
   - 2.0.0
+cache: bundler
+sudo: false
 notifications:
   flowdock: e02b1335699722cbb4a995c82e2ca7ff
 before_script:
