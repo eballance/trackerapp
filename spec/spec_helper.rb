@@ -21,6 +21,7 @@ RSpec.configure do |config|
   config.order = "defined"
   config.include Capybara::DSL
   config.include Sorcery::TestHelpers::Rails
+  config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
   config.include Trackerapp::TestHelpers
 
   config.mock_with :rspec do |c|
