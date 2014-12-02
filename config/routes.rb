@@ -29,4 +29,7 @@ Trackerapp::Application.routes.draw do
     resources :users
   end
 
+  namespace :api do
+    resources :projects, only: [:index, :show]
+  end
 end
