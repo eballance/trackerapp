@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::ProjectsController, type: :controller do
-  context 'GET #index' do
+  context 'GET /' do
     it 'returns projects json array' do
       user, project = create_user_with_project
 
@@ -12,7 +12,7 @@ describe Api::ProjectsController, type: :controller do
     end
   end
 
-  context 'GET #show' do
+  context 'GET /:id' do
     it 'returns project json object' do
       user, project = create_user_with_project
 
