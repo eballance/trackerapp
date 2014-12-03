@@ -19,6 +19,7 @@ Trackerapp::Application.routes.draw do
       patch :update_password
       get :update_password
       post :update_password
+      post :reset_token
     end
   end
 
@@ -28,4 +29,7 @@ Trackerapp::Application.routes.draw do
     resources :users
   end
 
+  namespace :api do
+    resources :projects, only: [:index, :show]
+  end
 end

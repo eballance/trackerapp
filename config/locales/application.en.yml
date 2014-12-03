@@ -67,6 +67,9 @@ en:
     update: "Update"
     salary: "Salary"
     user: "User"
+    token: "Token"
+    token_reseted: "Token reseted."
+    reset_token: "Reset token"
   admin:
     users: "Users"
     add_user: "Add user"
