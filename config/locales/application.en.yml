@@ -89,3 +89,8 @@ en:
     password: "Password"
     remember_me: "Remember me"
     log_in: "Log in"
+    forgot_password: "Forgot password?"
+    reset_password: "Reset password"
+    change_password: 'Change password'
+    instructions_sent: "Instructions have been sent to your email."
+    password_changed: 'Password was successfully updated.'

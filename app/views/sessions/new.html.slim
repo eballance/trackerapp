@@ -23,3 +23,15 @@
     .form-group
       .col-sm-offset-4.col-sm-4
         = submit_tag t('sessions.log_in'), class: 'btn btn-default'
+
+.box
+  h1 #{t('sessions.forgot_password')}
+
+  = form_tag password_resets_path, class: 'form-horizontal', method: :post do
+    .form-group
+      = label_tag :email, t('sessions.email'), class: 'col-sm-4 control-label'
+      .col-sm-4
+        = text_field_tag :email, params[:email], class: 'form-control'
+    .form-group
+      .col-sm-offset-4.col-sm-4
+        = submit_tag t('sessions.reset_password'), class: 'btn btn-default'

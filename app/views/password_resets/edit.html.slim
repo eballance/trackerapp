@@ -1,0 +1,20 @@
+.box
+  h1 #{t('sessions.new_password')}
+
+  = form_for @user, url: password_reset_path(@token), html: {class: 'form-horizontal', method: :put} do |f|
+    .form-group
+      = f.label :email, t('sessions.email'), class: 'col-sm-4 control-label'
+      .col-sm-4
+        = f.text_field :email, readonly: true, class: 'fake-input'
+    .form-group
+      = f.label :password, t('sessions.password'), class: 'col-sm-4 control-label'
+      .col-sm-4
+        = f.password_field :password
+    .form-group
+      = f.label :password_confirmation, t('sessions.password_confirmation'), class: 'col-sm-4 control-label'
+      .col-sm-4
+        = f.password_field :password_confirmation
+    .form-group
+      .col-sm-offset-4.col-sm-4
+        = f.submit t('sessions.change_password'), class: 'btn btn-default'
+

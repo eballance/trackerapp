@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528184444) do
+ActiveRecord::Schema.define(version: 20150202200507) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140528184444) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "username",                                     null: false
+    t.string   "username",                                        null: false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
@@ -68,12 +68,17 @@ ActiveRecord::Schema.define(version: 20140528184444) do
     t.datetime "remember_me_token_expires_at"
     t.text     "settings"
     t.string   "provider_type"
-    t.boolean  "admin",                        default: false
-    t.string   "language",                     default: "en"
+    t.boolean  "admin",                           default: false
+    t.string   "language",                        default: "en"
     t.integer  "current_salary"
     t.integer  "account_id"
+    t.string   "token"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
   end
 
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
 
 end
