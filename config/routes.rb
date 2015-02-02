@@ -28,4 +28,6 @@ Trackerapp::Application.routes.draw do
     resources :users
   end
 
+  resources :password_resets, only: [:create, :edit, :update]
+
 end
