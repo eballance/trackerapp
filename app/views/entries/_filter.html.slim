@@ -6,10 +6,13 @@ div.box-nav
 
     - if params[:controller] == 'admin/projects'
       .user
-        = select_tag :user_id, options_from_collection_for_select(@project.users, :id, :username, params[:user_id]), prompt: "All users", class: ' form-control'
+        = select_tag :user_id, options_from_collection_for_select(@project.users, :id, :username, params[:user_id]),
+                     prompt: t('users.all_users'), class: ' form-control'
     - else
       .project
-        = select_tag :project_id, options_from_collection_for_select(current_user.projects, :id, :name, params[:project_id]), prompt: "All projects", class: ' form-control'
+        - projects = current_page?(controller: 'users', action: 'show') ? @user.projects : current_user.projects
+        = select_tag :project_id, options_from_collection_for_select(projects, :id, :name, params[:project_id]),
+                     prompt: t('projects.all_projects'), class: ' form-control'
 
     .time.box-nav-fragment
       = link_to_entries('This month', 'this_month', @entry_finder.kind)

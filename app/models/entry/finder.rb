@@ -70,6 +70,10 @@ class Entry
       @total ||= entries.sum(:minutes)
     end
 
+    def collaborators
+      @collaborators ||= User.where id: @entries.pluck(:user_id).uniq
+    end
+
   end
 
 end

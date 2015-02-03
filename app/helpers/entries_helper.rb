@@ -7,4 +7,7 @@ module EntriesHelper
     link_to text, params.merge(kind: kind), options.merge(class: classes)
   end
 
+  def collaborator_names(entries)
+    entries.collaborators.map(&:username).join(', ')
+  end
 end

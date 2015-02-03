@@ -42,6 +42,7 @@ en:
     project_name: "Project name"
     assigned_users: "Assigned users"
     project: "Project"
+    all_projects: "All projects"
   users:
     user_created: "User created."
     user_updated: "User updated."
@@ -67,6 +68,7 @@ en:
     update: "Update"
     salary: "Salary"
     user: "User"
+    all_users: "All users"
   admin:
     users: "Users"
     add_user: "Add user"
