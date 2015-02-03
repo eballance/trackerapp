@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def build_title(base, page_title)
+    [base, page_title.presence].compact.join(' - ')
+  end
+
   def formatted_minutes(minutes, options = {})
     result = "#{minutes / 60}"
     result << " #{t('entries.hours')}" if options[:legend]
