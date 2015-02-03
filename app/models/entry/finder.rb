@@ -70,6 +70,10 @@ class Entry
       @total ||= entries.sum(:minutes)
     end
 
+    def collaborators
+      @collaborators ||= @entries.map(&:user_id).uniq.map { |user_id| User.find user_id }
+    end
+
   end
 
 end
