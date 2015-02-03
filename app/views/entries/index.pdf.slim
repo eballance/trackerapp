@@ -4,7 +4,7 @@ ul
   li= "Project: #{@entry_finder.project_name}" if @entry_finder.project_name
   li= "Period: #{I18n.l(@entry_finder.from, format: :short)} - #{I18n.l(@entry_finder.to, format: :short)}"
   li= "Total: #{formatted_minutes(@entry_finder.total, legend: true)}"
-  li= "Collaborators: #{collaborator_names(@entry_finder.entries)}"
+  li= "Collaborators: #{user_names(@entry_finder.collaborators)}"
 
 table.table.table-condensed
   tbody
