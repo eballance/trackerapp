@@ -41,6 +41,7 @@ cs:
     project_name: "Jméno projektu"
     assigned_users: "Přiřazení uživatelé"
     project: "Projekt"
+    all_projects: "Všechny projekty"
   users:
     user_created: "Uživatel vytvořen."
     user_updated: "Uživatel aktualizován."
@@ -66,6 +67,7 @@ cs:
     update: "Aktualizovat"
     salary: "Mzda"
     user: "Uživatel"
+    all_users: "Všichni uživatelé"
   admin:
     users: "Uživatelé"
     add_user: "Přidat uživatele"

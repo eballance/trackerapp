@@ -4,7 +4,7 @@ ul
   li= "Project: #{@entry_finder.project_name}" if @entry_finder.project_name
   li= "Period: #{I18n.l(@entry_finder.from, format: :short)} - #{I18n.l(@entry_finder.to, format: :short)}"
   li= "Total: #{formatted_minutes(@entry_finder.total, legend: true)}"
-  li= "Collaborators: #{@entry_finder.collaborators.map(&:username).join(', ')}"
+  li= "Collaborators: #{collaborator_names(@entry_finder.entries)}"
 
 table.table.table-condensed
   tbody
@@ -12,7 +12,7 @@ table.table.table-condensed
 
       tr.day-summary
         td colspan="2" = formatted_minutes(entries.sum(&:minutes))
-        - if @entry_finder.collaborators.count > 1
+        - if @entry_finder.collaborators.any?
           td
         td = I18n.l(date, format: :long)
 
@@ -21,6 +21,6 @@ table.table.table-condensed
         tr.entry
           td = formatted_minutes(entry.minutes)
           td = entry.project.name
-          - if @entry_finder.collaborators.count > 1
+          - if @entry_finder.collaborators.any?
             td = entry.user.username
           td = [entry.description, entry.links].join(" ")

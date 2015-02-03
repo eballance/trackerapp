@@ -71,7 +71,7 @@ class Entry
     end
 
     def collaborators
-      @collaborators ||= @entries.map(&:user_id).uniq.map { |user_id| User.find user_id }
+      @collaborators ||= User.where id: @entries.pluck(:user_id).uniq
     end
 
   end
