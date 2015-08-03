@@ -19,6 +19,30 @@ describe "Entries" do
       page.should have_content(previous_month_entry.description)
     end
 
+    it "lists existing entries by implicit range" do
+      login_user_with_request(@user)
+
+      this_month_entry = FactoryGirl.create(:entry, project: @project, user: @user)
+      previous_month_entry = FactoryGirl.create(:entry, date: 1.month.ago, project: @project, user: @user)
+
+      visit "/?kind=range"
+      page.should have_content(this_month_entry.description)
+      first(:link, "Last month").click
+      page.should have_content(previous_month_entry.description)
+    end
+
+    it "lists existing entries by explicit range" do
+      login_user_with_request(@user)
+
+      this_month_entry = FactoryGirl.create(:entry, project: @project, user: @user)
+      previous_month_entry = FactoryGirl.create(:entry, date: 1.month.ago, project: @project, user: @user)
+
+      visit "/?kind=range&from=#{1.month.ago.to_date.to_s}&to=#{Date.today.to_s}"
+      page.should have_content(this_month_entry.description)
+      first(:link, "Last month").click
+      page.should have_content(previous_month_entry.description)
+    end
+
     it "creates entry", js: true do
       login_user_manually(@user)
 
@@ -36,7 +60,7 @@ describe "Entries" do
       page.execute_script("$('#entry_form_date').val('#{1.month.ago}');")
       click_button 'Add'
       click_link("Last month")
-      
+
       page.should have_content("test description 6")
     end
 
