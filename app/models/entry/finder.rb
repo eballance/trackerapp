@@ -7,10 +7,10 @@ class Entry
     attr_accessor :kind
 
     def initialize(options = {})
-      @options = options
-      @kind    = options[:kind] || 'this_month'
-      @from    = options[:from] || 1.month.ago.to_date.to_s
-      @to      = options[:to] || Date.today.to_s
+      @options    = options
+      @kind       = options[:kind] || 'this_month'
+      @range_from = options[:from] || Date.current.at_beginning_of_month.to_date.to_s
+      @range_to   = options[:to] || Date.today.to_s
     end
 
     def user
@@ -46,7 +46,7 @@ class Entry
         when 'last_month'
           (Date.current.at_beginning_of_month - 1.month).to_date
         when 'range'
-          Date.parse(@from)
+          Date.parse(@range_from)
         end
       end
     end
@@ -59,7 +59,7 @@ class Entry
         when 'last_month'
           (Date.current.at_beginning_of_month - 1.month).at_end_of_month.to_date
         when 'range'
-          Date.parse(@to)
+          Date.parse(@range_to)
         end
       end
     end
