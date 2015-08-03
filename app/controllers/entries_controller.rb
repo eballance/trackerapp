@@ -43,7 +43,7 @@ class EntriesController < ApplicationController
     end
 
     def finder_params
-      params.permit(:project_id, :kind).merge(user: current_user)
+      params.permit(:project_id, :kind, :from, :to).merge(user: current_user)
     end
 
 end
