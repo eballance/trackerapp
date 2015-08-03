@@ -37,7 +37,7 @@ describe "Entries" do
       this_month_entry = FactoryGirl.create(:entry, project: @project, user: @user)
       previous_month_entry = FactoryGirl.create(:entry, date: 1.month.ago, project: @project, user: @user)
 
-      visit "/?kind=range&from=#{1.month.ago.to_date.to_s}&to=#{Date.today.to_s}"
+      visit "/?kind=range&from=#{2.months.ago.to_date.to_s}&to=#{Date.today.to_s}"
       page.should have_content(this_month_entry.description)
       first(:link, "Last month").click
       page.should have_content(previous_month_entry.description)
