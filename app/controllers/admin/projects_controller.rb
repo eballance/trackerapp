@@ -54,7 +54,7 @@ class Admin::ProjectsController < Admin::ApplicationController
     end
 
     def finder_params
-      params.permit(:user_id, :kind).merge(project: @project)
+      params.permit(:user_id, :kind, :from, :to).merge(project: @project)
     end
 
 end
